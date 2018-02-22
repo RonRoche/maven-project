@@ -12,7 +12,7 @@ pipeline {
 				}
 			}
 		}
-		stage ('Deploy to Staging') {
+		stage ('Staging & Code Coverage') {
 			parallel {
 				stage ('Deploy to Staging') {
 					steps {
