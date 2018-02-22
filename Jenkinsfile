@@ -13,8 +13,17 @@ pipeline {
 			}
 		}
 		stage ('Deploy to Staging') {
-			steps {
-				build job: 'deploy-to-staging'
+			parallel {
+				stage ('Deploy to Staging') {
+					steps {
+						build job: 'deploy-to-staging'
+					}
+				}
+				stage ('Code coverage') {
+					steps {
+						build job: 'static-analysis'
+					}
+				}
 			}
 		}
 		stage ('Deploy to Production') {
